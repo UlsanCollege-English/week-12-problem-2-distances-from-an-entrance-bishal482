@@ -1,20 +1,18 @@
 from collections import deque
 
 def bfs_distances(graph, start):
-    # If start not in graph, return empty dict
+    # If start isn't in the graph, return empty dict
     if start not in graph:
         return {}
 
     dist = {start: 0}
     queue = deque([start])
-    visited = {start}
 
     while queue:
         current = queue.popleft()
 
         for neighbor in graph[current]:
-            if neighbor not in visited:
-                visited.add(neighbor)
+            if neighbor not in dist:
                 dist[neighbor] = dist[current] + 1
                 queue.append(neighbor)
 
